@@ -20,7 +20,7 @@ module OrganOfBaam
     def start_playback(note, velocity)
       audio_index = note - (@audio_start_note)
       path = "#{@learn_language_audio_dir}/#{@file_names[audio_index]}".gsub(" ", "\\ ")
-      pitch_factor = (velocity.to_f*2 / 127.to_f)
+      pitch_factor = (velocity.to_f / 75.to_f)
 
       cmd = "play #{path} speed #{pitch_factor}"
       puts "Start audio playback #{cmd}"
