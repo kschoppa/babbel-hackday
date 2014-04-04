@@ -12,7 +12,7 @@ module OrganOfBaam
     def import(learn_language)
       @learn_language_audio_dir = "#{ROOT_AUDIO_DIR}/#{learn_language}"
       Dir.chdir(@learn_language_audio_dir)
-      @file_names = Dir.glob("*.mp3")
+      @file_names = Dir.glob("*.mp3").sort
     end
 
     def start_playback(note)
@@ -21,9 +21,7 @@ module OrganOfBaam
       cmd = "afplay #{path}"
       puts "Start audio playback #{cmd}"
 
-      @audio_threads[note] = {}
-      @audio_threads[note][:cmd] = cmd
-      @audio_threads[note][:thread] = Thread.new do
+      @audio_threads[note]= Thread.new do
         Kernel.system(cmd)
       end
     end
@@ -31,7 +29,7 @@ module OrganOfBaam
     def stop_playback(note)
       puts "Stop audio playback"
       uid = Process.uid
-      Thread.kill(@audio_threads[note][:thread])
+      Thread.kill(@audio_threads[note])
       pids = `pgrep -n afplay -u #{uid}`.split("\n")
 
       pids.each do |pid|
