@@ -45,7 +45,7 @@ module OrganOfBaam
           if LEARN_LANGUAGES_KEYS.include?(note.to_i)
             switch_learn_language(note) if status > 0
           elsif note.to_i == ABORT_NOTE
-            abort("Bye")
+            abort("Bye Bye")
           else
             if status > 0
               @audio.start_playback(note)

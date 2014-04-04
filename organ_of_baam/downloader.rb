@@ -17,13 +17,15 @@ module OrganOfBaam
     end
 
     def download_audio_files(json, learn_language)
-      json["pages"][0]["traineritems"].each do |key|
-        cmd = "mkdir audio/#{learn_language}"
-        Kernel.system(cmd)
-        cmd = "wget http://media.babbel.com/sound/#{key["sound_id"]}.mp3 -O audio/#{learn_language}/#{key["l1_text"]}.mp3"
+      Dir.mkdir("audio/#{learn_language}") unless File.exists?("audio/#{learn_language}")
+
+      json["pages"][0]["traineritems"].each_with_index do |key, index|
+        prefix = "%02d" % index
+        cmd = "wget http://media.babbel.com/sound/#{key["sound_id"]}.mp3 -O audio/#{learn_language}/0#{prefix}-#{key["sound_id"]}.mp3"
         Kernel.system(cmd)
       end
 
+      Dir
     end
 
   end
