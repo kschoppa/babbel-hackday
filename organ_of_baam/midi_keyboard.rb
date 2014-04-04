@@ -6,7 +6,7 @@ module OrganOfBaam
   class MidiKeyboard
 
     START_NOTE            = 36
-    LEARN_LANGUAGES       = %w( DAN DEU ENG FRA IND ITA NLD NOR POL POR SPA TUR SWE )
+    LEARN_LANGUAGES       = %w( DAN DEU ENG FRA IND ITA NLD NOR POL POR SPA SWE TUR )
     LEARN_LANGUAGES_KEYS  = (START_NOTE..START_NOTE+LEARN_LANGUAGES.size).to_a
 
     def initialize

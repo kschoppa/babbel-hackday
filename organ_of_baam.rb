@@ -3,5 +3,3 @@ require './organ_of_baam/audio'
 
 keyboard = OrganOfBaam::MidiKeyboard.new
 keyboard.listen
-
-
