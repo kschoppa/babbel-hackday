@@ -34,7 +34,7 @@ module OrganOfBaam
       puts "Stop audio playback"
       uid = Process.uid
       Thread.kill(@audio_threads[note])
-      pids = `pgrep -n play -u #{uid}`.split("\n")
+      pids = `pgrep -n sox -u #{uid}`.split("\n")
 
       pids.each do |pid|
         Process.kill("TERM", pid.to_i)
