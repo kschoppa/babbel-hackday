@@ -3,12 +3,19 @@ GEM
   specs:
     alsa-rawmidi (0.2.14)
       ffi (>= 1.0)
+    coderay (1.1.0)
     ffi (1.9.3)
     ffi-coremidi (0.2.0)
       ffi (>= 1.0)
+    method_source (0.8.2)
     midi-jruby (0.0.12)
     midi-winmm (0.1.10)
       ffi (>= 1.0)
+    pry (0.9.12.6)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    slop (3.5.0)
     unimidi (0.3.5)
       alsa-rawmidi (~> 0)
       ffi-coremidi (~> 0)
@@ -19,4 +26,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  pry
   unimidi
