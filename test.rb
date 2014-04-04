@@ -44,14 +44,22 @@ class OrganOfBaam
     path = "#{@dir_name}/#{@file_names[note-START_NOTE]}".gsub(" ", "\\ ")
     cmd = "afplay #{path}"
     puts cmd
-    @threads[note] = Thread.new do
+    @threads[note] = {}
+    @threads[note][:cmd] = cmd
+    @threads[note][:thread] = Thread.new do
       Kernel.system(cmd)
     end
   end
 
   def stop_audio_playback(note)
-    Thread.kill(@threads[note])
-    Process.kill("INT", Kernel.spawn("pgrep -f afplay"))
+    uid = Process.uid
+    Thread.kill(@threads[note][:thread])
+    pids = `pgrep -n afplay -u #{uid}`.split("\n")
+
+    pids.each do |pid|
+      Process.kill("TERM", pid.to_i)
+    end
+
   end
 
 end
